@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>WhisperWall · Share concerns, get answers</title>
+  <!-- Google Fonts + simple reset -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(145deg, #f9f7f3 0%, #f0ede8 100%);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: #1e1e2a;
+      padding: 2rem 1.5rem;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* header area */
+    .site-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 6px;
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #3b2b1f, #6b4e2e);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      border-bottom: 2px dashed #d9c7a7;
+      padding-bottom: 6px;
+    }
+
+    .logo span {
+      font-size: 1.8rem;
+    }
+
+    .tagline {
+      color: #5e4b34;
+      margin-top: 10px;
+      font-weight: 400;
+      background: #fff6e8;
+      display: inline-block;
+      padding: 6px 18px;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      backdrop-filter: blur(2px);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+    }
+
+    /* two-column layout */
+    .askfm-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 2rem;
+    }
+
+    /* left card: post a concern */
+    .card {
+      background: rgba(255, 253, 248, 0.96);
+      backdrop-filter: blur(0px);
+      border-radius: 2rem;
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0,0,0,0.02);
+      padding: 1.8rem;
+      transition: all 0.2s ease;
+      border: 1px solid #f0e5d8;
+    }
+
+    .card h2 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card h2 i {
+      font-size: 1.7rem;
+    }
+
+    .sub {
+      color: #7b6b58;
+      font-size: 0.85rem;
+      margin-bottom: 1.5rem;
+      border-left: 3px solid #e2c6a3;
+      padding-left: 12px;
+    }
+
+    textarea {
+      width: 100%;
+      border: 1px solid #e2d5c4;
+      border-radius: 1.5rem;
+      padding: 1rem 1.2rem;
+      font-family: 'Inter', monospace;
+      font-size: 0.95rem;
+      background: #fffefb;
+      resize: vertical;
+      transition: 0.2s;
+      font-weight: 400;
+      color: #2c241a;
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: #b58b5a;
+      box-shadow: 0 0 0 3px rgba(181, 139, 90, 0.2);
+    }
+
+    .input-group {
+      margin: 1.2rem 0 1rem;
+    }
+
+    button {
+      background: #2b2a27;
+      border: none;
+      padding: 0.8rem 1.6rem;
+      border-radius: 2.5rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: white;
+      cursor: pointer;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+
+    button:hover {
+      background: #4a3a2a;
+      transform: scale(0.97);
+    }
+
+    button.secondary {
+      background: #e7dfd4;
+      color: #3b2c1e;
+    }
+
+    button.secondary:hover {
+      background: #d9cebf;
+    }
+
+    /* feed styling (right side) */
+    .feed-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      margin-bottom: 1.3rem;
+    }
+
+    .feed-header h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .concern-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      max-height: 70vh;
+      overflow-y: auto;
+      padding-right: 6px;
+    }
+
+    .concern-card {
+      background: white;
+      border-radius: 1.5rem;
+      padding: 1.2rem 1.3rem;
+      transition: all 0.2s;
+      border: 1px solid #efe3d4;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+    }
+
+    .concern-text {
+      font-size: 1rem;
+      line-height: 1.45;
+      font-weight: 500;
+      color: #2c241a;
+      background: #fefaf5;
+      padding: 0.6rem 0.8rem;
+      border-radius: 1.2rem;
+      margin-bottom: 0.8rem;
+      border-left: 4px solid #e6cba2;
+    }
+
+    .meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.7rem;
+      color: #9c8872;
+      margin-bottom: 0.9rem;
+      align-items: center;
+    }
+
+    .answer-area {
+      margin-top: 12px;
+      background: #faf7f2;
+      border-radius: 1.2rem;
+      padding: 0.8rem;
+    }
+
+    .answer-input {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .answer-input input {
+      flex: 1;
+      border: 1px solid #e2cfbc;
+      border-radius: 2rem;
+      padding: 0.55rem 1rem;
+      font-size: 0.85rem;
+      background: white;
+    }
+
+    .answer-input input:focus {
+      outline: none;
+      border-color: #b58b5a;
+    }
+
+    .answer-btn {
+      background: #c7ad87;
+      padding: 0.5rem 1rem;
+      font-size: 0.75rem;
+      border-radius: 2rem;
+    }
+
+    .answers-list {
+      margin-top: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .single-answer {
+      background: #fff9f0;
+      border-radius: 1rem;
+      padding: 8px 12px;
+      font-size: 0.85rem;
+      border-left: 2px solid #dbbc8c;
+      color: #3b3228;
+    }
+
+    .answer-author {
+      font-weight: 600;
+      font-size: 0.7rem;
+      color: #aa8b64;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .empty-feed {
+      text-align: center;
+      padding: 3rem 1rem;
+      background: #fcf7f0;
+      border-radius: 2rem;
+      color: #b6a084;
+    }
+
+    hr {
+      margin: 0.5rem 0;
+      border: none;
+      border-top: 1px solid #eedfcb;
+    }
+
+    @media (max-width: 780px) {
+      .askfm-grid {
+        grid-template-columns: 1fr;
+        gap: 1.8rem;
+      }
+      body {
+        padding: 1.5rem;
+      }
+    }
+
+    footer {
+      margin-top: 3rem;
+      text-align: center;
+      font-size: 0.75rem;
+      color: #b5a07e;
+      border-top: 1px solid #e6daca;
+      padding-top: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="site-header">
+    <div class="logo">
+      <span>💭</span> WhisperWall
+    </div>
+    <div class="tagline">✨ share a daily concern · answer someone's truth ✨</div>
+  </div>
+
+  <div class="askfm-grid">
+    <!-- LEFT: post a concern -->
+    <div class="card">
+      <h2><span>📝</span> What's on your mind?</h2>
+      <div class="sub">Write about a worry, a thought, or anything you carry today — the community listens.</div>
+      <textarea id="concernInput" rows="3" placeholder="e.g., I'm anxious about my upcoming exams and feeling overwhelmed..."></textarea>
+      <div class="input-group">
+        <button id="postConcernBtn">🌿 Post concern +</button>
+      </div>
+      <div style="font-size: 0.7rem; color:#a28d72; margin-top: 0.5rem;">
+        ✨ anonymous & honest — others will reply with their perspective.
+      </div>
+    </div>
+
+    <!-- RIGHT: Feed with concerns + answering -->
+    <div>
+      <div class="feed-header">
+        <h2>🗣️ community concerns</h2>
+        <span style="font-size: 0.75rem; background:#e9dfd1; padding: 4px 10px; border-radius: 30px;">⚡ answer & support</span>
+      </div>
+      <div id="concernsFeed" class="concern-list">
+        <!-- dynamic concerns will be injected -->
+      </div>
+    </div>
+  </div>
+  <footer>
+    🌱 WhisperWall — inspired by AskFM, built for empathy. Every concern matters.
+  </footer>
+</div>
+
+<script>
+  // -------- DATA MODEL ----------
+  // Each concern: { id, text, createdAt, answers: [{ id, text, authorName, createdAt }] }
+  let concerns = [];
+
+  // Helper: generate random "anonymous" nickname for answerers (like "wanderer42", "kind_soul")
+  const namePrefixes = ["moonlighter", "quietthinker", "kindheart", "localdreamer", "curiouspanda", "gentleowl", "honestbee", "whisperer", "clover", "daydreamer"];
+  const nameSuffixes = ["", "🌿", "✨", "🍃", "💙", "☁️", "🌸", "⭐"];
+
+  function generateAnswererName() {
+    const pre = namePrefixes[Math.floor(Math.random() * namePrefixes.length)];
+    const num = Math.floor(Math.random() * 999);
+    const suffix = nameSuffixes[Math.floor(Math.random() * nameSuffixes.length)];
+    return `${pre}_${num}${suffix}`;
+  }
+
+  // Simple ID generator
+  function generateId() {
+    return Date.now() + '-' + Math.random().toString(36).substring(2, 8);
+  }
+
+  // Save to localStorage (persist)
+  function saveToLocal() {
+    localStorage.setItem('whisperwall_concerns', JSON.stringify(concerns));
+  }
+
+  // Load initial data (demo concerns if empty)
+  function loadInitialData() {
+    const stored = localStorage.getItem('whisperwall_concerns');
+    if (stored) {
+      concerns = JSON.parse(stored);
+      // Ensure each answer has proper structure (legacy migration)
+      concerns = concerns.map(c => ({
+        ...c,
+        answers: c.answers ? c.answers.map(a => ({ ...a, authorName: a.authorName || "anonymous" })) : []
+      }));
+    } else {
+      // Create 2 sample concerns with answers to make it lively, AskFM style
+      concerns = [
+        {
+          id: generateId(),
+          text: "Lately I feel like I'm not making any progress in my career. Everyone around me seems so ahead.",
+          createdAt: new Date(Date.now() - 86400000 * 2).toISOString(),
+          answers: [
+            { id: generateId(), text: "Comparison is the thief of joy. Focus on your own pace, you'll get there.", authorName: "wise_panda_42✨", createdAt: new Date(Date.now() - 86400000).toISOString() },
+            { id: generateId(), text: "Small steps count! Celebrate tiny wins, you're doing better than you think.", authorName: "gentleleaf_89🌿", createdAt: new Date(Date.now() - 3600000).toISOString() }
+          ]
+        },
+        {
+          id: generateId(),
+          text: "I struggle with overthinking every social interaction, especially at night. It's exhausting.",
+          createdAt: new Date(Date.now() - 86400000).toISOString(),
+          answers: [
+            { id: generateId(), text: "I relate so much! Try journaling before bed, it helps offload thoughts.", authorName: "nightowl_127☁️", createdAt: new Date(Date.now() - 43200000).toISOString() },
+            { id: generateId(), text: "Remember that most people don't analyze you as much as you think. You're okay.", authorName: "clarity_mind🌸", createdAt: new Date(Date.now() - 21600000).toISOString() }
+          ]
+        }
+      ];
+      saveToLocal();
+    }
+  }
+
+  // Render entire feed (concerns + answer sections)
+  function renderFeed() {
+    const feedContainer = document.getElementById('concernsFeed');
+    if (!feedContainer) return;
+
+    if (!concerns.length) {
+      feedContainer.innerHTML = `<div class="empty-feed">🌙 No concerns shared yet.<br> Be the first to write what's on your heart.</div>`;
+      return;
+    }
+
+    // sort concerns by newest first (createdAt descending)
+    const sortedConcerns = [...concerns].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+    feedContainer.innerHTML = sortedConcerns.map(concern => {
+      // format date
+      const concernDate = new Date(concern.createdAt);
+      const dateStr = concernDate.toLocaleDateString(undefined, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+
+      // Answers HTML (if any)
+      let answersHtml = '';
+      if (concern.answers && concern.answers.length) {
+        const sortedAnswers = [...concern.answers].sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt));
+        answersHtml = `<div class="answers-list">
+          ${sortedAnswers.map(ans => `
+            <div class="single-answer">
+              <span class="answer-author">💬 ${escapeHtml(ans.authorName)} · ${new Date(ans.createdAt).toLocaleString(undefined, {hour:'2-digit', minute:'2-digit', day:'numeric', month:'short'})}</span>
+              ${escapeHtml(ans.text)}
+            </div>
+          `).join('')}
+        </div>`;
+      } else {
+        answersHtml = `<div class="answers-list" style="margin-top: 6px; font-style: italic; font-size:0.75rem; color:#b99e7c;">✨ no answers yet — be the first to respond.</div>`;
+      }
+
+      return `
+        <div class="concern-card" data-concern-id="${concern.id}">
+          <div class="concern-text">“${escapeHtml(concern.text)}”</div>
+          <div class="meta">
+            <span>📌 ${dateStr}</span>
+            <span>💬 ${concern.answers ? concern.answers.length : 0} answers</span>
+          </div>
+          <div class="answer-area">
+            <div class="answer-input" id="answer-input-${concern.id}">
+              <input type="text" id="answerField-${concern.id}" placeholder="Write your answer / advice..." maxlength="400">
+              <button class="answer-btn" data-id="${concern.id}">Reply ↪</button>
+            </div>
+            ${answersHtml}
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    // Attach event listeners to each "Reply" button after rendering
+    document.querySelectorAll('.answer-btn').forEach(btn => {
+      btn.removeEventListener('click', handleAnswerClick);
+      btn.addEventListener('click', handleAnswerClick);
+    });
+  }
+
+  // Helper to escape HTML
+  function escapeHtml(str) {
+    if (!str) return '';
+    return str.replace(/[&<>]/g, function(m) {
+      if (m === '&') return '&amp;';
+      if (m === '<') return '&lt;';
+      if (m === '>') return '&gt;';
+      return m;
+    }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
+      return c;
+    });
+  }
+
+  // Handler for answering a concern
+  function handleAnswerClick(event) {
+    const button = event.currentTarget;
+    const concernId = button.getAttribute('data-id');
+    const inputField = document.getElementById(`answerField-${concernId}`);
+    if (!inputField) return;
+
+    const answerText = inputField.value.trim();
+    if (!answerText) {
+      // subtle alert replacement (no native alert, better ux)
+      const fakeAlert = document.createElement('div');
+      fakeAlert.innerText = "✏️ Write an answer before replying!";
+      fakeAlert.style.position = 'fixed';
+      fakeAlert.style.bottom = '20px';
+      fakeAlert.style.left = '50%';
+      fakeAlert.style.transform = 'translateX(-50%)';
+      fakeAlert.style.backgroundColor = '#2c241a';
+      fakeAlert.style.color = '#f5e6d3';
+      fakeAlert.style.padding = '8px 20px';
+      fakeAlert.style.borderRadius = '40px';
+      fakeAlert.style.fontSize = '0.8rem';
+      fakeAlert.style.zIndex = '999';
+      fakeAlert.style.opacity = '0.9';
+      document.body.appendChild(fakeAlert);
+      setTimeout(() => fakeAlert.remove(), 1800);
+      return;
+    }
+
+    // Find the concern
+    const concernIndex = concerns.findIndex(c => c.id === concernId);
+    if (concernIndex === -1) return;
+
+    // Create new answer object
+    const newAnswer = {
+      id: generateId(),
+      text: answerText.slice(0, 400),
+      authorName: generateAnswererName(),
+      createdAt: new Date().toISOString()
+    };
+
+    // push answer to the concern
+    if (!concerns[concernIndex].answers) concerns[concernIndex].answers = [];
+    concerns[concernIndex].answers.push(newAnswer);
+    
+    // save & re-render
+    saveToLocal();
+    renderFeed();
+    
+    // optional: clear the input field after answer
+    const freshInput = document.getElementById(`answerField-${concernId}`);
+    if (freshInput) freshInput.value = '';
+    
+    // small toast-like effect: show "answered!"
+    const toast = document.createElement('div');
+    toast.innerText = "✓ Answer posted! 💬";
+    toast.style.position = 'fixed';
+    toast.style.bottom = '20px';
+    toast.style.right = '20px';
+    toast.style.backgroundColor = '#4f6d5f';
+    toast.style.color = 'white';
+    toast.style.padding = '8px 18px';
+    toast.style.borderRadius = '40px';
+    toast.style.fontSize = '0.8rem';
+    toast.style.fontWeight = '500';
+    toast.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 2000);
+  }
+
+  // Post a new concern
+  function postNewConcern() {
+    const textarea = document.getElementById('concernInput');
+    const rawText = textarea.value.trim();
+    if (!rawText) {
+      const notify = document.createElement('div');
+      notify.innerText = "🌿 Please write your concern before posting.";
+      notify.style.position = 'fixed';
+      notify.style.bottom = '30px';
+      notify.style.left = '50%';
+      notify.style.transform = 'translateX(-50%)';
+      notify.style.background = '#ad8b67';
+      notify.style.color = 'white';
+      notify.style.padding = '8px 24px';
+      notify.style.borderRadius = '60px';
+      notify.style.fontSize = '0.85rem';
+      notify.style.zIndex = '1000';
+      document.body.appendChild(notify);
+      setTimeout(() => notify.remove(), 2000);
+      return;
+    }
+
+    const newConcern = {
+      id: generateId(),
+      text: rawText.slice(0, 800),
+      createdAt: new Date().toISOString(),
+      answers: []
+    };
+
+    concerns.unshift(newConcern);  // newest on top
+    saveToLocal();
+    renderFeed();
+
+    // Clear textarea
+    textarea.value = '';
+    
+    // success feedback
+    const successMsg = document.createElement('div');
+    successMsg.innerText = "✨ Concern shared — others can now answer ✨";
+    successMsg.style.position = 'fixed';
+    successMsg.style.bottom = '30px';
+    successMsg.style.left = '50%';
+    successMsg.style.transform = 'translateX(-50%)';
+    successMsg.style.backgroundColor = '#3b6b4b';
+    successMsg.style.color = 'white';
+    successMsg.style.padding = '8px 24px';
+    successMsg.style.borderRadius = '40px';
+    successMsg.style.fontSize = '0.85rem';
+    successMsg.style.zIndex = '1000';
+    document.body.appendChild(successMsg);
+    setTimeout(() => successMsg.remove(), 2300);
+  }
+
+  // optional: extra style for scrollbar
+  const style = document.createElement('style');
+  style.textContent = `
+    .concern-list::-webkit-scrollbar {
+      width: 5px;
+    }
+    .concern-list::-webkit-scrollbar-track {
+      background: #ede3d7;
+      border-radius: 10px;
+    }
+    .concern-list::-webkit-scrollbar-thumb {
+      background: #cbb187;
+      border-radius: 10px;
+    }
+    button, .answer-btn {
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .answer-input input {
+      font-family: 'Inter', monospace;
+    }
+  `;
+  document.head.appendChild(style);
+
+  // event listeners and init
+  function init() {
+    loadInitialData();
+    renderFeed();
+
+    const postBtn = document.getElementById('postConcernBtn');
+    if (postBtn) postBtn.addEventListener('click', postNewConcern);
+
+    // Also allow Ctrl+Enter on textarea
+    const concernInput = document.getElementById('concernInput');
+    if (concernInput) {
+      concernInput.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+          e.preventDefault();
+          postNewConcern();
+        }
+      });
+    }
+  }
+
+  init();
+</script>
+</body>
+</html>
