@@ -1,13 +1,10 @@
-Here is an HTML document that transforms the "xoxo" concept into a commercial social media website with brand-ready features, user profiles, and monetization cues.
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>xoxo · social heartspace · share & answer</title>
-  <!-- Google Fonts + modern reset -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+  <title>xoxo · commercial social media · share & answer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     * {
@@ -16,603 +13,393 @@ Here is an HTML document that transforms the "xoxo" concept into a commercial so
       box-sizing: border-box;
     }
 
-    /* LIGHT MODE (Beige + Orange xoxo) */
+    /* LIGHT MODE (Brand: Beige + Orange) */
     :root {
-      --bg-gradient-start: #fef7e8;
-      --bg-gradient-end: #faf0e1;
-      --card-bg: rgba(255, 252, 245, 0.98);
-      --text-primary: #2c2418;
-      --text-soft: #7a5c3c;
-      --accent-orange: #e67e22;
-      --accent-orange-deep: #cf711f;
-      --accent-glow: rgba(230, 126, 34, 0.12);
-      --border-light: #f2e2ce;
-      --input-bg: #fffdf9;
-      --answer-bg: #fff6ea;
-      --tagline-bg: #fff2e3;
-      --shadow-sm: 0 12px 28px -8px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0,0,0,0.02);
-      --btn-primary: #e67e22;
-      --btn-primary-hover: #d35400;
-      --btn-secondary-bg: #fae6d4;
-      --btn-secondary-text: #b45f2b;
-      --footer-border: #f0dfcc;
-      --scroll-thumb: #e6c394;
-      --scroll-track: #f7ede2;
-      --nav-bg: #fffcf5;
-      --badge-gold: #f7b05e;
+      --bg-body: #fef7e8;
+      --card-bg: #ffffff;
+      --text-dark: #2c2418;
+      --text-muted: #7a5c3c;
+      --orange: #e67e22;
+      --orange-dark: #d35400;
+      --border: #f0e2d0;
+      --sidebar-bg: #fffaf3;
     }
 
-    /* DARK MODE (cozy night) */
     body.dark {
-      --bg-gradient-start: #1e1b16;
-      --bg-gradient-end: #2a241e;
-      --card-bg: #2e2821e6;
-      --text-primary: #f2e8da;
-      --text-soft: #dcb485;
-      --accent-orange: #f39c12;
-      --accent-orange-deep: #e67e22;
-      --accent-glow: rgba(243, 156, 18, 0.2);
-      --border-light: #4a3e30;
-      --input-bg: #3a3229;
-      --answer-bg: #3d352b;
-      --tagline-bg: #3d2e1f;
-      --shadow-sm: 0 12px 28px -8px rgba(0, 0, 0, 0.4);
-      --btn-primary: #f39c12;
-      --btn-primary-hover: #e67e22;
-      --btn-secondary-bg: #4e3e2c;
-      --btn-secondary-text: #f5bc70;
-      --footer-border: #4d3f2e;
-      --scroll-thumb: #c48b3b;
-      --scroll-track: #403829;
-      --nav-bg: #28221be6;
-      --badge-gold: #e67e22;
+      --bg-body: #1a1612;
+      --card-bg: #2a241e;
+      --text-dark: #f2e8da;
+      --text-muted: #dcb485;
+      --orange: #f39c12;
+      --orange-dark: #e67e22;
+      --border: #4a3e30;
+      --sidebar-bg: #24201a;
     }
 
     body {
-      background: linear-gradient(145deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      color: var(--text-primary);
-      transition: background 0.3s ease, color 0.2s ease;
-      min-height: 100vh;
+      background-color: var(--bg-body);
+      font-family: 'Inter', sans-serif;
+      color: var(--text-dark);
+      transition: background 0.3s, color 0.2s;
     }
 
-    /* ----- COMMERCIAL / SOCIAL MEDIA LAYOUT ----- */
-    .app-wrapper {
-      max-width: 1300px;
+    /* Commercial Layout */
+    .container {
+      max-width: 1280px;
       margin: 0 auto;
-      padding: 0 1.5rem 2rem;
+      padding: 0 1.5rem;
     }
 
-    /* premium navbar */
+    /* Header / Nav */
     .navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      padding: 1rem 0 1rem;
-      border-bottom: 2px solid var(--accent-orange);
+      padding: 1rem 0;
+      border-bottom: 2px solid var(--orange);
       margin-bottom: 2rem;
-      background: var(--nav-bg);
-      border-radius: 0 0 2rem 2rem;
-      padding: 0.8rem 1.8rem;
-      backdrop-filter: blur(4px);
+      flex-wrap: wrap;
     }
-
-    .logo-area {
-      display: flex;
-      align-items: baseline;
-      gap: 8px;
-    }
-    .logo-xoxo {
+    .logo {
       font-size: 2rem;
       font-weight: 800;
-      background: linear-gradient(135deg, var(--accent-orange), #e67e22);
+      font-family: 'Playfair Display', serif;
+      background: linear-gradient(135deg, var(--orange), #d45a1a);
       background-clip: text;
       -webkit-background-clip: text;
       color: transparent;
-      font-family: 'Playfair Display', serif;
-      letter-spacing: -0.5px;
-    }
-    .logo-xoxo i {
-      font-size: 1.6rem;
-      color: var(--accent-orange);
-      background: none;
-      -webkit-background-clip: unset;
-    }
-    .badge-pro {
-      background: var(--badge-gold);
-      font-size: 0.65rem;
-      padding: 2px 8px;
-      border-radius: 40px;
-      color: #2c2418;
-      font-weight: 700;
-      margin-left: 8px;
     }
     .nav-links {
       display: flex;
-      gap: 1.8rem;
+      gap: 1.5rem;
       align-items: center;
     }
     .nav-links a {
       text-decoration: none;
-      color: var(--text-primary);
+      color: var(--text-dark);
       font-weight: 500;
-      font-size: 0.9rem;
-      transition: 0.2s;
     }
-    .nav-links a i {
-      margin-right: 6px;
-      color: var(--accent-orange);
+    .btn-premium {
+      background: var(--orange);
+      color: white;
+      padding: 0.4rem 1rem;
+      border-radius: 2rem;
+      font-weight: 600;
     }
-    .nav-links a:hover { color: var(--accent-orange); }
-    .theme-toggle-nav {
+    .theme-toggle {
       background: var(--card-bg);
-      border: 1px solid var(--accent-orange);
-      border-radius: 40px;
-      padding: 6px 14px;
+      border: 1px solid var(--orange);
+      border-radius: 2rem;
+      padding: 0.3rem 0.8rem;
       cursor: pointer;
-      font-size: 0.8rem;
-      font-weight: 500;
     }
 
-    /* hero commercial banner */
-    .hero-banner {
-      background: linear-gradient(105deg, var(--accent-glow), transparent);
-      border-radius: 2rem;
-      padding: 1.5rem 2rem;
-      margin-bottom: 2.5rem;
+    /* Hero Banner (Monetization Cue) */
+    .hero {
+      background: linear-gradient(105deg, rgba(230,126,34,0.1), transparent);
+      border-radius: 1.5rem;
+      padding: 1.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      border: 1px solid var(--accent-orange);
+      margin-bottom: 2rem;
+      border: 1px solid var(--orange);
     }
-    .hero-text h3 {
-      font-size: 1.4rem;
-      font-weight: 700;
-    }
-    .hero-text p {
-      color: var(--text-soft);
-      font-size: 0.85rem;
-    }
-    .cta-button {
-      background: var(--btn-primary);
-      padding: 0.7rem 1.5rem;
-      border-radius: 3rem;
+    .hero h2 { font-size: 1.3rem; }
+    .hero button {
+      background: var(--orange);
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 2rem;
       color: white;
-      font-weight: 600;
+      font-weight: bold;
     }
 
-    /* main grid: feed + sidebar (commercial style) */
-    .social-grid {
+    /* Two Column Feed */
+    .two-columns {
       display: grid;
-      grid-template-columns: 1fr 0.9fr;
+      grid-template-columns: 1fr 320px;
       gap: 2rem;
     }
 
-    /* cards */
-    .card {
+    /* Post Box */
+    .post-card {
       background: var(--card-bg);
-      backdrop-filter: blur(2px);
-      border-radius: 1.8rem;
-      box-shadow: var(--shadow-sm);
-      padding: 1.5rem;
-      border: 1px solid var(--border-light);
-      margin-bottom: 1.5rem;
-    }
-
-    .post-form textarea {
-      width: 100%;
       border-radius: 1.5rem;
-      padding: 1rem;
-      background: var(--input-bg);
-      border: 1px solid var(--border-light);
-      color: var(--text-primary);
+      padding: 1.2rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid var(--border);
+    }
+    textarea {
+      width: 100%;
+      border-radius: 1rem;
+      padding: 0.8rem;
+      background: var(--bg-body);
+      border: 1px solid var(--border);
+      color: var(--text-dark);
       resize: vertical;
     }
-    .post-form textarea:focus {
-      border-color: var(--accent-orange);
-      outline: none;
+    button {
+      background: var(--orange);
+      border: none;
+      padding: 0.5rem 1.2rem;
+      border-radius: 2rem;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
     }
 
-    .trending-sidebar .trend-item {
-      padding: 0.7rem 0;
-      border-bottom: 1px solid var(--border-light);
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .concern-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-      max-height: 65vh;
-      overflow-y: auto;
-      padding-right: 5px;
-    }
-    .concern-card {
+    /* Feed Items */
+    .concern-item {
       background: var(--card-bg);
-      border-radius: 1.5rem;
-      padding: 1rem 1.2rem;
-      border: 1px solid var(--border-light);
+      border-radius: 1.2rem;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border: 1px solid var(--border);
     }
-    .concern-header {
+    .user-row {
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin-bottom: 12px;
+      gap: 0.6rem;
+      margin-bottom: 0.6rem;
     }
     .avatar {
       width: 36px;
       height: 36px;
-      background: var(--accent-orange);
+      background: var(--orange);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
-      font-weight: bold;
     }
-    .user-meta {
-      font-size: 0.8rem;
-    }
-    .username {
-      font-weight: 700;
-    }
-    .timestamp {
-      font-size: 0.65rem;
-      color: var(--text-soft);
-    }
-    .concern-text {
-      font-size: 1rem;
-      line-height: 1.4;
-      margin: 8px 0 12px 0;
-      background: var(--answer-bg);
-      padding: 10px 12px;
+    .answer-box {
+      margin-top: 0.8rem;
+      background: var(--bg-body);
       border-radius: 1rem;
+      padding: 0.6rem;
     }
-    .answers-section {
-      margin-top: 12px;
-      background: var(--answer-bg);
-      border-radius: 1rem;
-      padding: 0.7rem;
-    }
-    .answer-input-flex {
+    .answer-input {
       display: flex;
-      gap: 8px;
-      margin-bottom: 12px;
+      gap: 0.5rem;
     }
-    .answer-input-flex input {
+    .answer-input input {
       flex: 1;
       border-radius: 2rem;
-      padding: 0.5rem 1rem;
-      background: var(--input-bg);
-      border: 1px solid var(--border-light);
+      padding: 0.4rem 0.8rem;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
     }
-    .btn-sm {
-      background: var(--btn-primary);
-      padding: 0.4rem 1rem;
-      font-size: 0.7rem;
-      border-radius: 2rem;
-      color: white;
+    .answer-list {
+      margin-top: 0.6rem;
+      font-size: 0.85rem;
     }
-    .answer-item {
-      font-size: 0.8rem;
-      margin-top: 8px;
-      border-left: 2px solid var(--accent-orange);
-      padding-left: 10px;
+    .single-answer {
+      border-left: 2px solid var(--orange);
+      padding-left: 0.6rem;
+      margin-top: 0.5rem;
     }
-    .sponsor-ad {
-      background: var(--accent-glow);
-      border-radius: 1rem;
+
+    /* Sidebar (Ads / Premium) */
+    .sidebar-card {
+      background: var(--sidebar-bg);
+      border-radius: 1.2rem;
       padding: 1rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid var(--border);
+    }
+    .ad-space {
+      background: rgba(230,126,34,0.1);
       text-align: center;
+      padding: 1rem;
+      border-radius: 1rem;
       font-size: 0.7rem;
     }
+
     footer {
-      margin-top: 2.5rem;
       text-align: center;
-      border-top: 1px solid var(--footer-border);
-      padding-top: 1.5rem;
-      font-size: 0.7rem;
+      margin-top: 3rem;
+      padding: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.75rem;
     }
-    @media (max-width: 880px) {
-      .social-grid { grid-template-columns: 1fr; }
-      .navbar { flex-direction: column; gap: 12px; }
+
+    @media (max-width: 800px) {
+      .two-columns { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
-<div class="app-wrapper">
-  <!-- commercial navigation bar -->
+<div class="container">
+  <!-- Navbar with commercial branding -->
   <div class="navbar">
-    <div class="logo-area">
-      <div class="logo-xoxo"><i class="fas fa-heart"></i> xoxo <i class="fas fa-comment-dots"></i></div>
-      <span class="badge-pro">BETA · SOCIAL</span>
-    </div>
+    <div class="logo"><i class="fas fa-heart"></i> xoxo <i class="fas fa-comment-dots"></i></div>
     <div class="nav-links">
-      <a href="#"><i class="fas fa-home"></i> Home</a>
-      <a href="#"><i class="fas fa-trending-up"></i> Explore</a>
-      <a href="#"><i class="fas fa-bell"></i> Notifications</a>
-      <a href="#"><i class="fas fa-user-circle"></i> Profile</a>
-      <div class="theme-toggle-nav" id="commercialThemeToggle"><i class="fas fa-moon"></i> Night mode</div>
+      <a href="#">Feed</a>
+      <a href="#">Explore</a>
+      <a href="#" class="btn-premium">✨ Go Premium</a>
+      <div class="theme-toggle" id="nightToggleBtn"><i class="fas fa-moon"></i> Night</div>
     </div>
   </div>
 
-  <!-- hero / monetization / upsell -->
-  <div class="hero-banner">
-    <div class="hero-text">
-      <h3><i class="fas fa-crown"></i> xoxo+ creators</h3>
-      <p>Earn from your answers • Verified badges • Analytics dashboard</p>
+  <!-- Monetization Banner -->
+  <div class="hero">
+    <div>
+      <h2><i class="fas fa-crown"></i> xoxo Creator Program</h2>
+      <p>Earn from your answers. Get verified badge. Analytics dashboard.</p>
     </div>
-    <div class="cta-button">✨ Go Premium →</div>
+    <button>Apply now →</button>
   </div>
 
-  <div class="social-grid">
-    <!-- LEFT COLUMN: main feed (concerns + answers) -->
+  <div class="two-columns">
+    <!-- MAIN FEED COLUMN -->
     <div>
-      <div class="card post-form">
-        <h4 style="display: flex; gap: 6px;"><i class="fas fa-pen-fancy" style="color: var(--accent-orange);"></i> Share a daily concern</h4>
-        <textarea id="globalConcernInput" rows="2" placeholder="What’s on your heart today? The xoxo community answers with kindness..."></textarea>
-        <div style="display: flex; justify-content: space-between; margin-top: 12px;">
-          <span style="font-size: 0.7rem;"><i class="fas fa-globe"></i> Public · anonymous allowed</span>
-          <button id="globalPostBtn" style="background: var(--btn-primary); border: none; padding: 8px 20px; border-radius: 40px; color: white;">🍊 Post concern</button>
+      <div class="post-card">
+        <textarea id="concernInput" rows="2" placeholder="What's your daily concern? The xoxo community answers with kindness..."></textarea>
+        <div style="display: flex; justify-content: space-between; margin-top: 0.8rem;">
+          <span style="font-size:0.7rem;"><i class="fas fa-globe"></i> Public · Anonymous allowed</span>
+          <button id="postBtn">🍊 Share concern</button>
         </div>
       </div>
-      <div class="feed-header" style="display: flex; justify-content: space-between; margin-bottom: 12px;">
-        <h3><i class="fas fa-stream"></i> Community feed</h3>
-        <span style="font-size: 0.7rem;">✨ real answers · real people</span>
-      </div>
-      <div id="concernsFeed" class="concern-list"></div>
+      <div id="feedContainer"></div>
     </div>
 
-    <!-- RIGHT SIDEBAR: commercial / trending / sponsors -->
+    <!-- RIGHT SIDEBAR: Commercial / Ads / Trending -->
     <div>
-      <div class="card">
-        <h4><i class="fas fa-chart-line"></i> Trending concerns 🔥</h4>
-        <div class="trending-sidebar">
-          <div class="trend-item"><span>😔 Loneliness at work</span> <span>142 answers</span></div>
-          <div class="trend-item"><span>💭 Future anxiety</span> <span>98 answers</span></div>
-          <div class="trend-item"><span>🧡 Self-worth journey</span> <span>211 answers</span></div>
+      <div class="sidebar-card">
+        <h4><i class="fas fa-chart-line"></i> Trending 🔥</h4>
+        <div style="margin-top: 0.5rem;">
+          <p>💭 "Work burnout" · 203 answers</p>
+          <p>❤️ "Self-love journey" · 156 answers</p>
+          <p>🌙 "Late night overthinking" · 98 answers</p>
         </div>
       </div>
-      <div class="card">
-        <h4><i class="fas fa-users"></i> Top answerers this week</h4>
-        <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px;">
-          <span>🌸 gentleowl_42</span> <span>🍊 orangeheart_99</span> <span>✨ soulguide_12</span>
-        </div>
-        <div class="sponsor-ad" style="margin-top: 1rem;">
-          <i class="fas fa-ad"></i> Sponsored · xoxo mental wellness kit — starting at $9
+      <div class="sidebar-card">
+        <h4><i class="fas fa-trophy"></i> Top Answerers</h4>
+        <p>🌸 gentleowl_42 · 320 xoxo points</p>
+        <p>🍊 orangeheart_99 · 287 points</p>
+        <div class="ad-space" style="margin-top: 1rem;">
+          <i class="fas fa-ad"></i> Sponsored: xoxo therapy journal — $9.99
         </div>
       </div>
-      <div class="card">
-        <h4><i class="fas fa-shield-alt"></i> Safe space guidelines</h4>
-        <p style="font-size: 0.75rem;">Respectful answers only. xoxo is a commercial social platform where empathy meets growth. Report system active.</p>
+      <div class="sidebar-card">
+        <h4><i class="fas fa-shield-alt"></i> Commercial Trust</h4>
+        <p style="font-size:0.75rem;">Moderated community. Report feature. Premium support 24/7.</p>
       </div>
     </div>
   </div>
   <footer>
-    <i class="fas fa-copyright"></i> xoxo social media — Beige & orange kindness. Follow us: <i class="fab fa-instagram"></i> <i class="fab fa-twitter"></i> <i class="fab fa-tiktok"></i> | Monetization ready
+    © 2025 xoxo social · Beige & orange kindness. <a href="#" style="color: var(--orange);">Terms</a> | <a href="#" style="color: var(--orange);">Privacy</a> | <a href="#" style="color: var(--orange);">Monetization</a>
   </footer>
 </div>
 
 <script>
-  // ---------- DATA MODEL (commercial social ready) ----------
+  // ---------- MOCK DATA (replace with API calls in real commercial version) ----------
   let concerns = [];
 
-  function generateId() {
-    return Date.now() + '-' + Math.random().toString(36).substring(2, 10);
+  function generateId() { return Date.now() + '-' + Math.random().toString(36).substring(2, 8); }
+  function randomName() {
+    const names = ["moonlighter", "kind_soul", "orangebee", "cozywhisper", "gentle_fox", "xoxo_helper"];
+    return names[Math.floor(Math.random() * names.length)] + "_" + Math.floor(Math.random() * 999);
   }
 
-  // generate random usernames for posts & answers (community)
-  const namePrefixes = ["orangeheart", "xoxo_friend", "gentlespark", "honeybee", "cozyreply", "truthseeker", "kind_wave", "citrusmuse", "warmhugger", "dailyhope"];
-  const suffixes = ["🍊", "🧡", "✨", "🍃", "🌸", "💌", "⭐"];
-  function randomUsername() {
-    const pre = namePrefixes[Math.floor(Math.random() * namePrefixes.length)];
-    const num = Math.floor(Math.random() * 999);
-    const suf = suffixes[Math.floor(Math.random() * suffixes.length)];
-    return `${pre}_${num}${suf}`;
-  }
-
-  function saveToLocal() {
-    localStorage.setItem('xoxo_commercial_v1', JSON.stringify(concerns));
-  }
-
-  function loadData() {
-    const stored = localStorage.getItem('xoxo_commercial_v1');
-    if (stored) {
+  function loadMockData() {
+    const stored = localStorage.getItem("xoxo_commercial_demo");
+    if(stored) {
       concerns = JSON.parse(stored);
-      concerns = concerns.map(c => ({
-        ...c,
-        answers: c.answers ? c.answers.map(a => ({ ...a, authorName: a.authorName || randomUsername() })) : [],
-        authorName: c.authorName || randomUsername()
-      }));
     } else {
-      // seed with commercial style content
       concerns = [
-        {
-          id: generateId(),
-          text: "I feel pressure to be perfect on social media, including this platform. How do I embrace vulnerability?",
-          createdAt: new Date(Date.now() - 86400000 * 1).toISOString(),
-          authorName: "worried_creator🧡",
-          answers: [
-            { id: generateId(), text: "Authenticity > perfection. People connect with real, not curated. xoxo is a safe place.", authorName: "mindfulguide_42🍊", createdAt: new Date(Date.now() - 7200000).toISOString() },
-            { id: generateId(), text: "Start small: share one imperfect thought a day. Growth begins there 💌", authorName: "gentlewhisper_88🌸", createdAt: new Date(Date.now() - 3600000).toISOString() }
-          ]
-        },
-        {
-          id: generateId(),
-          text: "Struggling to find work-life balance while building a side hustle.",
-          createdAt: new Date(Date.now() - 172800000).toISOString(),
-          authorName: "hustling_hope✨",
-          answers: [
-            { id: generateId(), text: "Set boundaries and celebrate micro-wins. You're not a machine 🧡", authorName: "clarity_panda_12⭐", createdAt: new Date(Date.now() - 86400000).toISOString() }
-          ]
-        }
+        { id: generateId(), text: "I'm anxious about my future career path. Anyone else feel lost?", createdAt: new Date().toISOString(), author: randomName(), answers: [{ id: generateId(), text: "You're not alone! Take small steps every day. xoxo 💛", author: randomName(), createdAt: new Date().toISOString() }] },
+        { id: generateId(), text: "How do you deal with loneliness in a big city?", createdAt: new Date(Date.now() - 86400000).toISOString(), author: randomName(), answers: [] }
       ];
-      saveToLocal();
+      localStorage.setItem("xoxo_commercial_demo", JSON.stringify(concerns));
     }
-  }
-
-  function escapeHtml(str) {
-    if (!str) return '';
-    return str.replace(/[&<>]/g, function(m) {
-      if (m === '&') return '&amp;';
-      if (m === '<') return '&lt;';
-      if (m === '>') return '&gt;';
-      return m;
-    });
   }
 
   function renderFeed() {
-    const container = document.getElementById('concernsFeed');
-    if (!container) return;
-    if (!concerns.length) {
-      container.innerHTML = `<div style="background: var(--card-bg); border-radius: 2rem; padding: 2rem; text-align: center;">🍊 No concerns yet — be the first to share.</div>`;
-      return;
-    }
+    const container = document.getElementById("feedContainer");
+    if(!container) return;
+    if(concerns.length === 0) { container.innerHTML = "<div class='post-card'>✨ No concerns yet. Be the first to share.</div>"; return; }
     const sorted = [...concerns].sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt));
-    container.innerHTML = sorted.map(concern => {
-      const dateObj = new Date(concern.createdAt);
-      const dateStr = dateObj.toLocaleDateString(undefined, { month: 'short', day: 'numeric', hour:'2-digit', minute:'2-digit' });
-      let answersHtml = '';
-      if (concern.answers && concern.answers.length) {
-        const sortedAnswers = [...concern.answers].sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt));
-        answersHtml = `<div style="margin-top: 8px;">
-          ${sortedAnswers.map(ans => `
-            <div class="answer-item">
-              <strong style="color: var(--accent-orange);">${escapeHtml(ans.authorName)}</strong> <span style="font-size:0.65rem;">· ${new Date(ans.createdAt).toLocaleString()}</span><br>
-              ${escapeHtml(ans.text)}
-            </div>
-          `).join('')}
-        </div>`;
-      } else {
-        answersHtml = `<div style="font-size: 0.7rem; margin-top: 6px; font-style: italic;">✨ awaiting xoxo answers — be the first to support ✨</div>`;
-      }
+    container.innerHTML = sorted.map(c => {
+      const answersHtml = c.answers.map(a => `<div class="single-answer"><strong>${escapeHtml(a.author)}</strong> · ${escapeHtml(a.text)}</div>`).join("");
       return `
-        <div class="concern-card" data-id="${concern.id}">
-          <div class="concern-header">
-            <div class="avatar">${escapeHtml(concern.authorName.charAt(0).toUpperCase())}</div>
-            <div class="user-meta">
-              <div class="username">${escapeHtml(concern.authorName)}</div>
-              <div class="timestamp">${dateStr}</div>
-            </div>
+        <div class="concern-item" data-id="${c.id}">
+          <div class="user-row">
+            <div class="avatar">${escapeHtml(c.author.charAt(0))}</div>
+            <div><strong>${escapeHtml(c.author)}</strong> <span style="font-size:0.7rem;">· ${new Date(c.createdAt).toLocaleString()}</span></div>
           </div>
-          <div class="concern-text">“${escapeHtml(concern.text)}”</div>
-          <div class="answers-section" id="answers-section-${concern.id}">
-            <div class="answer-input-flex">
-              <input type="text" id="ansField-${concern.id}" placeholder="Write your answer... xoxo" maxlength="400">
-              <button class="answer-submit-btn" data-id="${concern.id}" style="background: var(--btn-primary); border: none; border-radius: 2rem; padding: 6px 14px; color:white; font-size:0.7rem;">Reply 🧡</button>
+          <div style="margin: 0.5rem 0;">“${escapeHtml(c.text)}”</div>
+          <div class="answer-box">
+            <div class="answer-input">
+              <input type="text" id="ans-${c.id}" placeholder="Write your answer... (kindness matters)">
+              <button class="reply-btn" data-id="${c.id}">Reply 🧡</button>
             </div>
-            ${answersHtml}
+            <div class="answer-list" id="answers-list-${c.id}">${answersHtml || "<em>Be the first to answer ✨</em>"}</div>
           </div>
         </div>
       `;
-    }).join('');
+    }).join("");
 
-    // attach answer events
-    document.querySelectorAll('.answer-submit-btn').forEach(btn => {
-      btn.removeEventListener('click', handleAnswerClick);
-      btn.addEventListener('click', handleAnswerClick);
+    // attach reply events
+    document.querySelectorAll(".reply-btn").forEach(btn => {
+      btn.removeEventListener("click", handleReply);
+      btn.addEventListener("click", handleReply);
     });
   }
 
-  function handleAnswerClick(e) {
+  function handleReply(e) {
     const btn = e.currentTarget;
-    const concernId = btn.getAttribute('data-id');
-    const inputField = document.getElementById(`ansField-${concernId}`);
-    if (!inputField) return;
-    const answerText = inputField.value.trim();
-    if (!answerText) {
-      showToast("🍊 Write something kind before replying!", "#e67e22");
-      return;
+    const concernId = btn.getAttribute("data-id");
+    const input = document.getElementById(`ans-${concernId}`);
+    const answerText = input.value.trim();
+    if(!answerText) { alert("Please write an answer before replying."); return; }
+    const concern = concerns.find(c => c.id === concernId);
+    if(concern) {
+      const newAnswer = { id: generateId(), text: answerText, author: randomName(), createdAt: new Date().toISOString() };
+      concern.answers = concern.answers || [];
+      concern.answers.push(newAnswer);
+      localStorage.setItem("xoxo_commercial_demo", JSON.stringify(concerns));
+      renderFeed();
     }
-    const idx = concerns.findIndex(c => c.id === concernId);
-    if (idx === -1) return;
-    const newAnswer = {
-      id: generateId(),
-      text: answerText.slice(0, 400),
-      authorName: randomUsername(),
-      createdAt: new Date().toISOString()
-    };
-    if (!concerns[idx].answers) concerns[idx].answers = [];
-    concerns[idx].answers.push(newAnswer);
-    saveToLocal();
-    renderFeed();
-    showToast("💬 Answer posted! xoxo community appreciates you", "#d45a1a");
   }
 
-  function postGlobalConcern() {
-    const textarea = document.getElementById('globalConcernInput');
-    const raw = textarea.value.trim();
-    if (!raw) {
-      showToast("Please write a concern before posting, xoxo", "#b45f2b");
-      return;
-    }
+  function postNewConcern() {
+    const textarea = document.getElementById("concernInput");
+    const text = textarea.value.trim();
+    if(!text) { alert("Write your concern first."); return; }
     const newConcern = {
       id: generateId(),
-      text: raw.slice(0, 800),
+      text: text,
       createdAt: new Date().toISOString(),
-      authorName: randomUsername(),
+      author: randomName(),
       answers: []
     };
     concerns.unshift(newConcern);
-    saveToLocal();
+    localStorage.setItem("xoxo_commercial_demo", JSON.stringify(concerns));
     renderFeed();
-    textarea.value = '';
-    showToast("✨ Concern shared — answers will appear soon ✨", "#e67e22");
+    textarea.value = "";
   }
 
-  function showToast(msg, bgColor) {
-    const toast = document.createElement('div');
-    toast.innerText = msg;
-    toast.style.position = 'fixed';
-    toast.style.bottom = '30px';
-    toast.style.left = '50%';
-    toast.style.transform = 'translateX(-50%)';
-    toast.style.backgroundColor = bgColor || '#e67e22';
-    toast.style.color = 'white';
-    toast.style.padding = '10px 22px';
-    toast.style.borderRadius = '60px';
-    toast.style.fontSize = '0.8rem';
-    toast.style.zIndex = '9999';
-    toast.style.fontWeight = '500';
-    toast.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
-    document.body.appendChild(toast);
-    setTimeout(() => toast.remove(), 2200);
-  }
+  function escapeHtml(str) { return str.replace(/[&<>]/g, function(m){ if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
 
-  // NIGHT MODE TOGGLE with localstorage (commercial)
+  // Night mode (commercial)
   function initNightMode() {
-    const toggleBtn = document.getElementById('commercialThemeToggle');
-    const isDarkStored = localStorage.getItem('xoxo_commercial_dark') === 'true';
-    if (isDarkStored) document.body.classList.add('dark');
-    else document.body.classList.remove('dark');
-    toggleBtn.innerHTML = document.body.classList.contains('dark') ? '<i class="fas fa-sun"></i> Day mode' : '<i class="fas fa-moon"></i> Night mode';
-    toggleBtn.addEventListener('click', () => {
-      document.body.classList.toggle('dark');
-      const darkNow = document.body.classList.contains('dark');
-      localStorage.setItem('xoxo_commercial_dark', darkNow);
-      toggleBtn.innerHTML = darkNow ? '<i class="fas fa-sun"></i> Day mode' : '<i class="fas fa-moon"></i> Night mode';
-      showToast(darkNow ? "🌙 Night mode · cozy xoxo" : "☀️ Day mode · beige & orange warmth", "#e67e22");
+    const toggle = document.getElementById("nightToggleBtn");
+    const isDark = localStorage.getItem("xoxo_night") === "true";
+    if(isDark) document.body.classList.add("dark");
+    toggle.addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+      localStorage.setItem("xoxo_night", document.body.classList.contains("dark"));
+      toggle.innerHTML = document.body.classList.contains("dark") ? '<i class="fas fa-sun"></i> Day' : '<i class="fas fa-moon"></i> Night';
     });
   }
 
-  // event binding
-  document.addEventListener('DOMContentLoaded', () => {
-    loadData();
-    renderFeed();
-    const postBtn = document.getElementById('globalPostBtn');
-    if (postBtn) postBtn.addEventListener('click', postGlobalConcern);
-    const textareaGlobal = document.getElementById('globalConcernInput');
-    if (textareaGlobal) {
-      textareaGlobal.addEventListener('keydown', (e) => {
-        if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') postGlobalConcern();
-      });
-    }
-    initNightMode();
-  });
+  // bootstrap
+  loadMockData();
+  renderFeed();
+  document.getElementById("postBtn")?.addEventListener("click", postNewConcern);
+  initNightMode();
 </script>
 </body>
 </html>
-```
